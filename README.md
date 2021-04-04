@@ -37,8 +37,7 @@ range = 110 m
 ![alt text](https://github.com/pravin382/Udacity-SFND-Radar/blob/master/pics/RDM.png)
 
 ### 2D CFAR
-- Determine the number of Training cells for each dimension. Similarly, pick the number of guard cells. <br /> 
-  ```
+```
 %Select the number of Training Cells in both the dimensions.
 Tr=10;
 Td=8;
@@ -56,7 +55,7 @@ Noise_Level = zeros(size(RDM));
 Avg_Noise = zeros(size(RDM));
 Threshold = zeros(size(RDM));
 CFAR = zeros(size(RDM)); 
-  ```
+```
 - Slide the cell under test across the complete matrix. Make sure the CUT has margin for Training and Guard cells from the edges.
 - For every iteration sum the signal level within all the training cells. To sum convert the value from logarithmic to linear using db2pow function.
 - Average the summed values for all of the training cells used. After averaging convert it back to logarithmic using pow2db.
