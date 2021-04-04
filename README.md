@@ -6,7 +6,7 @@ In this project, we perform the following tasks:
 - Perform Range FFT on the received signal to determine the Range
 - Towards the end, perform the CFAR processing on the output of 2nd FFT to display the target.
 
-![alt text](https://github.com/pravin382/Udacity-SFND-Radar/blob/master/pics/Project_radar_target_generation_and_detection.png)
+![Project_radar_target_generation_and_detection](https://user-images.githubusercontent.com/30601726/113507507-9932ce80-9553-11eb-9557-e76ba560ed02.png)
 
 ### Radar System Requirements
 |Frequency | 77 Ghz|
@@ -31,10 +31,12 @@ range = 110 m
 - Plot the output
 - There should be a peak at the initial position of the target. In our case at 110 m.
 
-![alt text](https://github.com/pravin382/Udacity-SFND-Radar/blob/master/pics/frequency_and_Range.png)
+![untitled3](https://user-images.githubusercontent.com/30601726/113507608-3aba2000-9554-11eb-98e4-8b578cd522fd.jpg)
+
+
 
 ###  2nd FFT for Range Doppler Map
-![alt text](https://github.com/pravin382/Udacity-SFND-Radar/blob/master/pics/RDM.png)
+![untitled2](https://user-images.githubusercontent.com/30601726/113507579-1cecbb00-9554-11eb-9634-f8693472a66f.jpg)
 
 ### 2D CFAR
 ```
@@ -82,4 +84,5 @@ for ii = Tr+Gr+1:Nr/2-(Tr+Gr)
     end
 end
 ```
-![alt text](https://github.com/pravin382/Udacity-SFND-Radar/blob/master/pics/cfar_sig.png)
+![untitled](https://user-images.githubusercontent.com/30601726/113507542-e7e06880-9553-11eb-8d62-4f19ce0bf407.jpg)
+
