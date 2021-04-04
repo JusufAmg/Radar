@@ -1,4 +1,4 @@
-Target Generation and Detection 
+## Radar Target Generation and Detection 
 In this project, we perform the following tasks:
 - Configure the FMCW waveform based on the system requirements.
 - Define the range and velocity of target and simulate its displacement.
@@ -39,24 +39,16 @@ range = 110 m
 ![untitled2](https://user-images.githubusercontent.com/30601726/113507579-1cecbb00-9554-11eb-9634-f8693472a66f.jpg)
 
 ### 2D CFAR
+- Determine the number of Training cells for each dimension. Similarly, pick the number of guard cells. <br />
 ```
 %Select the number of Training Cells in both the dimensions.
 Tr=10;
 Td=8;
-% *%TODO* :
 %Select the number of Guard Cells in both dimensions around the Cell under 
-%test (CUT) for accurate estimation
 Gr=4;
 Gd=4;
-% *%TODO* :
 % offset the threshold by SNR value in dB
 offset=6;
-% *%TODO* :
-%Create a vector to store noise_level for each iteration on training cells
-Noise_Level = zeros(size(RDM));
-Avg_Noise = zeros(size(RDM));
-Threshold = zeros(size(RDM));
-CFAR = zeros(size(RDM)); 
 ```
 - Slide the cell under test across the complete matrix. Make sure the CUT has margin for Training and Guard cells from the edges.
 - For every iteration sum the signal level within all the training cells. To sum convert the value from logarithmic to linear using db2pow function.
