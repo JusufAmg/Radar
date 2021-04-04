@@ -149,9 +149,9 @@ Gd=4;
 offset=6;
 % *%TODO* :
 %Create a vector to store noise_level for each iteration on training cells
-Noise_Level = zeros(1,1);
-Avg_Noise = zeros(1,1);
-Threshold = zeros(1,1);
+Noise_Level = zeros(size(RDM));
+Avg_Noise = zeros(size(RDM));
+Threshold = zeros(size(RDM));
 CFAR = zeros(size(RDM));
 
 
@@ -166,48 +166,25 @@ CFAR = zeros(size(RDM));
 %signal under CUT with this threshold. If the CUT level > threshold assign
 %it a value of 1, else equate it to 0.
 Grid_Size = (2*Tr+2*Gr+1)*(2*Td+2*Gd+1);
-for ii = Tr+Gr+1:Nr-(Tr+Gr)
+for ii = Tr+Gr+1:Nr/2-(Tr+Gr)
     for jj = Td+Gd+1:Nd-(Td+Gd)
         for p = ii-(Tr+Gr) : ii+(Tr+Gr)
             for q = jj-(Td+Gd):jj+(Td+Gd)
                 if (abs(ii-p)>Gr || abs(jj-q)>Gd)
-                    Noise_Level = Noise_Level+ db2pow(RDM(p,q));
+                    Noise_Level(ii,jj) = Noise_Level(ii,jj)+ db2pow(RDM(p,q));
                 end
             end
         end
-		Avg_Noise = Noise_Level/Grid_Size;
-		Threshold = offset +  + pow2db(Avg_Noise);
-        if (RDM(ii,jj) >Threshold)
+		Avg_Noise(ii,jj)= Noise_Level(ii,jj)/Grid_Size;
+		Threshold(ii,jj) = offset +  + pow2db(Avg_Noise(ii,jj));
+        if (RDM(ii,jj) >Threshold(ii,jj))
             CFAR(ii,jj) = 1;
         end
     end
 end
-   % Use RDM[x,y] as the matrix from the output of 2D FFT for implementing
-   % CFAR
-
-
-
-
-% *%TODO* :
-% The process above will generate a thresholded block, which is smaller 
-%than the Range Doppler Map as the CUT cannot be located at the edges of
-%matrix. Hence,few cells will not be thresholded. To keep the map size same
-% set those values to 0. 
- 
-
-
-
-
-
-
-
 
 % *%TODO* :
 %display the CFAR output using the Surf function like we did for Range
 %Doppler Response output.
 figure,surf(doppler_axis,range_axis,CFAR);
 colorbar;
-
-
- 
- 
